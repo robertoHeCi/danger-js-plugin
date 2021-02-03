@@ -10,7 +10,7 @@ export declare function markdown(message: string): void
  * Wrapper of dangerjs in ts
  */
 
-const checkPRReviewers = () => {
+export const checkPRReviewers = () => {
   if (danger.github.requested_reviewers?.users.length === 0) {
     return fail("PR must have at least 1 reviewer!! 2")
   }
@@ -51,15 +51,15 @@ const checkUpdatedTests = (testFilePattern = "test") => {
   }
 }
 
-export default function wrapperTs() {
+export const wrapperTs  = () => {
   // Replace this with the code from your Dangerfile
   const title = danger.github.pr.title
-  message(`PR Title: ${title} 2`)
+  message(`PR Title: ${title}`)
 
-  checkPRReviewers()
-  checkChangedFiles(10)
-  checkTicketLinkInPrBoby()
-  checkNewDependencies()
-  checkUpdatedTests()
+  // checkPRReviewers()
+  // checkChangedFiles(10)
+  // checkTicketLinkInPrBoby()
+  // checkNewDependencies()
+  // checkUpdatedTests()
 
 }
