@@ -44,6 +44,4 @@ const checkUpdatedTests = (testFilePattern = "test") => {
   }
 }
 
-export default function wrapperTs() {
-  checkPRReviewers()
-}
+export { checkPRReviewers, checkChangedFiles }
