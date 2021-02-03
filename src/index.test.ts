@@ -1,4 +1,4 @@
-import { wrapperTs} from "./index"
+import wrapperTs from "./index"
 
 declare const global: any
 
@@ -22,9 +22,6 @@ describe("wrapperTs()", () => {
       github: { pr: { title: "My Test Title" } },
     }
     wrapperTs()
-    expect(global.message).toHaveBeenCalledWith(
-      "PR Title: My Test Title",
-    )
+    expect(global.message).toHaveBeenCalledWith("PR Title: My Test Title")
   })
-
 })
