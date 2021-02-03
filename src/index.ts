@@ -1,4 +1,3 @@
-// Provides dev-time type structures for  `danger` - doesn't affect runtime.
 import { DangerDSLType } from "danger/distribution/dsl/DangerDSL"
 import { checkPRReviewers } from "./rules/checkReviewers"
 declare var danger: DangerDSLType
@@ -44,4 +43,10 @@ const checkUpdatedTests = (testFilePattern = "test") => {
   }
 }
 
-export { checkPRReviewers, checkChangedFiles }
+export default function() {
+  checkPRReviewers()
+  checkChangedFiles()
+  checkTicketLinkInPrBoby()
+  checkNewDependencies()
+  checkUpdatedTests()
+}
