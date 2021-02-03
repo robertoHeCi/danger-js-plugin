@@ -1,5 +1,6 @@
 // Provides dev-time type structures for  `danger` - doesn't affect runtime.
 import {DangerDSLType} from "danger/distribution/dsl/DangerDSL"
+import {checkPRReviewers} from "./rules/checkReviewers"
 declare var danger: DangerDSLType
 export declare function message(message: string): void
 export declare function warn(message: string): void
@@ -9,12 +10,6 @@ export declare function markdown(message: string): void
 /**
  * Wrapper of dangerjs in ts
  */
-
-export const checkPRReviewers = () => {
-  if (danger.github.requested_reviewers?.users.length === 0) {
-    return fail("PR must have at least 1 reviewer!! 2")
-  }
-}
 
 const checkChangedFiles = ( limit = 10) => {
   const addedFilesAmount = danger.git?.created_files?.length || 0
@@ -52,14 +47,5 @@ const checkUpdatedTests = (testFilePattern = "test") => {
 }
 
 export const wrapperTs  = () => {
-  // Replace this with the code from your Dangerfile
-  const title = danger.github.pr.title
-  message(`PR Title: ${title}`)
-
-  // checkPRReviewers()
-  // checkChangedFiles(10)
-  // checkTicketLinkInPrBoby()
-  // checkNewDependencies()
-  // checkUpdatedTests()
-
+  checkPRReviewers()
 }

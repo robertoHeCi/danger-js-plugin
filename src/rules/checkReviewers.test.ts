@@ -1,8 +1,8 @@
-import { wrapperTs} from "./index"
+import {checkPRReviewers} from "./checkReviewers"
 
 declare const global: any
 
-describe("wrapperTs()", () => {
+describe("Check reviewers tests", () => {
   beforeEach(() => {
     global.warn = jest.fn()
     global.message = jest.fn()
@@ -17,14 +17,9 @@ describe("wrapperTs()", () => {
     global.markdown.mockClear()
   })
 
-  it.skip("Checks for a that message has been called", () => {
-    global.danger = {
-      github: { pr: { title: "My Test Title" } },
-    }
-    wrapperTs()
-    expect(global.message).toHaveBeenCalledWith(
-      "PR Title: My Test Title",
-    )
+  it("fails if there are no asignees on the PR", () => {
+    global.danger = {github: {requested_reviewers: {users: []}}}
+    checkPRReviewers()
+    expect(global.fail).toHaveBeenCalled()
   })
-
 })
