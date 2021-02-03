@@ -27,7 +27,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
-        run: npm build
+      - name: Build
+        run: npm run build
       - name: Publish
         run: |
           npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
