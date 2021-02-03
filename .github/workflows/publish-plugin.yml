@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: 14
       - name: Build
-      - run: npm build
+        run: npm build
       - name: Publish
         run: |
           npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
