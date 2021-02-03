@@ -14,8 +14,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn install --frozen-lockfile
-      - run: npm build
-        name: Build
+        name: Tests
       - run: npm test
         env:
           CI: true
@@ -28,6 +27,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
+      - name: Build
+      - run: npm build
       - name: Publish
         run: |
           npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
