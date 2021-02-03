@@ -8,9 +8,7 @@
       true,
       "never-prefix"
     ],
-    "max-classes-per-file": [
-      false
-    ],
+    "max-classes-per-file": [ false ],
     "member-access": [
       false,
       "check-accessor",
@@ -26,7 +24,10 @@
     "switch-default": false,
     "trailing-comma": [
       true,
-      { "multiline": "always", "singleline": "never" }
+      {
+        "multiline": "always",
+        "singleline": "never"
+      }
     ]
   }
 }
