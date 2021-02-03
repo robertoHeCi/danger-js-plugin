@@ -1,6 +1,6 @@
 // Provides dev-time type structures for  `danger` - doesn't affect runtime.
-import {DangerDSLType} from "danger/distribution/dsl/DangerDSL"
-import {checkPRReviewers} from "./rules/checkReviewers"
+import { DangerDSLType } from "danger/distribution/dsl/DangerDSL"
+import { checkPRReviewers } from "./rules/checkReviewers"
 declare var danger: DangerDSLType
 export declare function message(message: string): void
 export declare function warn(message: string): void
@@ -11,7 +11,7 @@ export declare function markdown(message: string): void
  * Wrapper of dangerjs in ts
  */
 
-const checkChangedFiles = ( limit = 10) => {
+const checkChangedFiles = (limit = 10) => {
   const addedFilesAmount = danger.git?.created_files?.length || 0
   const changedFilesAmount = danger.git?.modified_files?.length || 0
   const deletedFilesAmount = danger.git?.deleted_files?.length || 0
@@ -37,15 +37,13 @@ const checkNewDependencies = () => {
 const checkUpdatedTests = (testFilePattern = "test") => {
   const addedFiles = danger.git.created_files || []
   const changedFiles = danger.git.modified_files || []
-  const testFilesUpdated = [...addedFiles, ...changedFiles].filter(filepath =>
-    filepath.includes(testFilePattern),
-  )
+  const testFilesUpdated = [...addedFiles, ...changedFiles].filter(filepath => filepath.includes(testFilePattern))
 
   if (testFilesUpdated.length === 0) {
     warn(`There are no changes in test files. Pattern used: ${testFilePattern} 2`)
   }
 }
 
-export const wrapperTs  = () => {
+export default function wrapperTs() {
   checkPRReviewers()
 }
